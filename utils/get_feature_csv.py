@@ -25,7 +25,9 @@ def getCsv(file_label, f, length, save_path, size, feature_list, size_max=128):
         
         cpu_temp_file_name = f'{cpu_label_before}-{file_label[i]}'
         gpu_temp_file_name = f'{gpu_label_before}-{file_label[i]}'
-        
+        if cpu_temp_file_name not in cpu_list1 or gpu_temp_file_name not in gpu_list1:
+            print("label error")
+            exit()
         path = os.path.join(f_cpu, cpu_temp_file_name)
         fs = os.listdir(path)
         feature_cpu = np.empty(shape=(0, 16 * feature_n))
@@ -80,24 +82,33 @@ def getCsv(file_label, f, length, save_path, size, feature_list, size_max=128):
     df = pd.DataFrame(data=last_data)
     df.columns = head
     df.to_csv(save_path, index=False)
-    return cpu_list2
+    return file_label
 
 
 def getCsvNp(file_label, f, length, size, feature_list, size_max=128):
     feature_n = len(feature_list)
     f_cpu = os.path.join(f, 'cpu')
     f_gpu = os.path.join(f, 'gpu')
+    
     cpu_list1 = os.listdir(f_cpu)
-    _ = cpu_list1[0].index('-')
-    cpu_list2 = [s[_ + 1:] for s in cpu_list1]
+    _ = cpu_list1[0].split('-')
+    cpu_label_before = _[0]
+    
     gpu_list1 = os.listdir(f_gpu)
+    _ = gpu_list1[0].split('-')
+    gpu_label_before = _[0]
 
     dataset = np.empty(shape=(0, 16 * feature_n * 2))
     label = []
     for i in range(len(cpu_list1)):
-        if cpu_list2[i] not in file_label:
-            continue
-        path = os.path.join(f_cpu, cpu_list1[i])
+        cpu_temp_file_name = f'{cpu_label_before}-{file_label[i]}'
+        gpu_temp_file_name = f'{gpu_label_before}-{file_label[i]}'
+        
+        if cpu_temp_file_name not in cpu_list1 or gpu_temp_file_name not in gpu_list1:
+            print("label error")
+            exit()
+            
+        path = os.path.join(f_cpu, cpu_temp_file_name)
         fs = os.listdir(path)
         feature_cpu = np.empty(shape=(0, 16 * feature_n))
         for k in range(len(fs)):
@@ -116,7 +127,8 @@ def getCsvNp(file_label, f, length, size, feature_list, size_max=128):
                 feature_cpu = np.concatenate((feature_cpu, feature), axis=0)
 
         feature_gpu = np.empty(shape=(0, 16 * feature_n))
-        path = os.path.join(f_gpu, gpu_list1[i])
+        
+        path = os.path.join(f_gpu, gpu_temp_file_name)
         fs = os.listdir(path)
 
         for k in range(len(fs)):
@@ -136,7 +148,9 @@ def getCsvNp(file_label, f, length, size, feature_list, size_max=128):
         count = min(feature_cpu.shape[0], feature_gpu.shape[0])
         feature_cpu_gpu = np.hstack((feature_cpu[:count, :], feature_gpu[:count, :]))
         dataset = np.vstack([dataset, feature_cpu_gpu])
-        label += count * [[file_label.index(cpu_list2[i])]]
+        label += count * [[i]]
+        print(f"{file_label[i]}  count: {count} label: {i}")
+        
     label = np.array(label)
     last_data = np.hstack((label, dataset))
 
@@ -406,7 +420,6 @@ def mergeCSV(file_list, save_file):
 
 
 def getCsvChoose2(file_label, f, length, save_path, size, feature_list, choose_cpu_gpu='cpu', size_max=128):
-    # 按照label的顺序来排列
     feature_n = len(feature_list)
     f_cpu_gpu = os.path.join(f, choose_cpu_gpu)
     list1 = os.listdir(f_cpu_gpu)

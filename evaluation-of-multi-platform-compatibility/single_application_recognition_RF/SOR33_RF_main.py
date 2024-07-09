@@ -3,9 +3,7 @@ import logging
 import os
 import sys
 sys.path.append('..')
-
-parent_dir_path2 = '/home/jdw/program/code/loadshow-git'
-sys.path.insert(0, parent_dir_path2)
+sys.path.append('../../')
 
 from utils.get_feature_csv import getCsv
 from utils.program_class import program_class, program_name
@@ -28,7 +26,7 @@ if __name__ == "__main__":
                     'csgo', 'winrar']
     print(len(file_label))
     file = "../../dataset/div_firstpeak/9600k-2060"
-    save_file = "9600_feature2.csv"
+    save_file = "9600_feature.csv"
 
     # labels = getCsv(file_label, file, 64, save_file, 16, feature_list)
     labels = file_label

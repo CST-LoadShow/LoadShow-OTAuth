@@ -26,12 +26,12 @@ if __name__ == "__main__":
     save_file = "STR_MAC.csv"
     labels = ['wechat', 'zoom', 'bandizip', 'qq_music', 'AliyunNetdisk', 'obs', 'BaiduNetdisk', 'bilibili', 'vlc', 'baseline', 'iQiYi', 'tencent_meeting', 'cloudmusic', 'pr2023', 'tencent_video']
 
-    print("cpu")
-    getCsvChoose2(file_label,file, 64, save_file_cpu, 16, feature_list, choose_cpu_gpu = "cpu", size_max=32)
-    print("gpu")
-    getCsvChoose2(file_label,file, 64, save_file_gpu, 16, feature_list, choose_cpu_gpu = "gpu", size_max=32)
+    # print("cpu")
+    # getCsvChoose2(file_label,file, 64, save_file_cpu, 16, feature_list, choose_cpu_gpu = "cpu", size_max=32)
+    # print("gpu")
+    # getCsvChoose2(file_label,file, 64, save_file_gpu, 16, feature_list, choose_cpu_gpu = "gpu", size_max=32)
   
-    getCsv(file_label, file, 64, save_file, 16, feature_list)
+    # getCsv(file_label, file, 64, save_file, 16, feature_list)
     
     print('labels', labels)
     # sort labels by category

@@ -24,9 +24,7 @@ def modelTrain(dataset_path, k):
     print("mean scores", np.mean(scores))
     print("std scores", np.std(scores))
 
-    print("五折的")
     y_train_pred = cross_val_predict(forest_5k, X, y, cv=5)
-    # TODO:可以输出五折的混淆矩阵
     cm = confusion_matrix(y,y_train_pred)
     FP = cm.sum(axis=0) - np.diag(cm)  
     FN = cm.sum(axis=1) - np.diag(cm)
@@ -44,20 +42,7 @@ def modelTrain(dataset_path, k):
     forest100.fit(X_train, y_train)
     y_pred = forest100.predict(X_test)
 
-    print("单次的")
-    cm = confusion_matrix(y_test, y_pred)
-    # print(cm)
-
-    FP = cm.sum(axis=0) - np.diag(cm)  
-    FN = cm.sum(axis=1) - np.diag(cm)
-    TP = np.diag(cm)
-    TN = cm.sum() - (FP + FN + TP)
-    TPR = TP / (TP + FN)
-    FPR = FP / (FP + TN)
-    # print("TPR", TPR)
-    # print("FPR", FPR)
-    print("avg TPR", np.mean(TPR))
-    print("avg FPR", np.mean(FPR))
+   
 
     return
 
