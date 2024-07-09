@@ -34,9 +34,7 @@ def modelTrain(dataset_path, save_model, save_pic, label_text, label_index, colo
               "Accuracy on test set: {:.3f}".format(forest100.score(X_test, y_test)) + '\n' + \
               classification_report(y_test, y_pred) + '\n'
    
-    print("五折的")
     y_train_pred = cross_val_predict(forest_5k, X, y, cv=5)
-    # TODO:可以输出五折的混淆矩阵
     cm = confusion_matrix(y,y_train_pred)
     FP = cm.sum(axis=0) - np.diag(cm)  
     FN = cm.sum(axis=1) - np.diag(cm)
@@ -49,20 +47,7 @@ def modelTrain(dataset_path, save_model, save_pic, label_text, label_index, colo
     print("avg TPR", np.mean(TPR))
     print("avg FPR", np.mean(FPR))
 
-    print("单次的")
     cm = confusion_matrix(y_test, y_pred)
-    # print(cm)
-
-    FP = cm.sum(axis=0) - np.diag(cm)  
-    FN = cm.sum(axis=1) - np.diag(cm)
-    TP = np.diag(cm)
-    TN = cm.sum() - (FP + FN + TP)
-    TPR = TP / (TP + FN)
-    FPR = FP / (FP + TN)
-    # print("TPR", TPR)
-    # print("FPR", FPR)
-    print("avg TPR", np.mean(TPR))
-    print("avg FPR", np.mean(FPR))
     
     plt.rcParams["font.family"] = "Times New Roman"
     fig, ax = plot_confusion_matrix(conf_mat=cm,
@@ -74,7 +59,7 @@ def modelTrain(dataset_path, save_model, save_pic, label_text, label_index, colo
                                     cmap='Blues',
                                     )
     for i in range(len(label_text)):
-        ax.get_xticklabels()[i].set_color(color_list[i])  # 这里的数字3是表示第几个点，不是坐标刻度值
+        ax.get_xticklabels()[i].set_color(color_list[i])  
         ax.get_yticklabels()[i].set_color(color_list[i])
 
     plt.xlabel("Predicted Label", fontsize=14)

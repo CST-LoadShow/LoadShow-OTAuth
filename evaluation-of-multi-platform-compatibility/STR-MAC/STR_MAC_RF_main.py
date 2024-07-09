@@ -13,25 +13,26 @@ if __name__ == "__main__":
     print("=========== get feature csv ===========")
     feature_list = ['mean', 'std', 'max', 'min', 'range', 'CV', 'RMS', 'MAD', 'skew', 'kurt',
                     'Q1', 'Median', 'Q3', 'IQR', 'SF', 'IF', 'CF']
-    file_label = os.listdir('../../dataset/div_firstpeak/Mac1/cpu')
+    file_label = os.listdir('../../dataset/div_firstpeak/Mac/cpu')
     tmp = file_label[0].index("-")
     file_label = [s[tmp+1:] for s in file_label]
 
-    save_file_cpu = "mac2_cpu.csv"
-    save_file_gpu = "mac2_gpu.csv"
+    save_file_cpu = "mac_cpu.csv"
+    save_file_gpu = "mac_gpu.csv"
     
     # labels =['wechat', 'zoom', 'bandizip', 'qq_music', 'AliyunNetdisk', 'obs', 'BaiduNetdisk', 'bilibili', 'vlc', 'baseline', 'iQiYi', 'tencent_meeting', 'cloudmusic', 'pr2023', 'tencent_video']
   
-    file2 = "../../dataset/div_firstpeak/Mac2"
-    save_file2 = "STR_MAC2.csv"
+    file = "../../dataset/div_firstpeak/Mac"
+    save_file = "STR_MAC.csv"
     labels = ['wechat', 'zoom', 'bandizip', 'qq_music', 'AliyunNetdisk', 'obs', 'BaiduNetdisk', 'bilibili', 'vlc', 'baseline', 'iQiYi', 'tencent_meeting', 'cloudmusic', 'pr2023', 'tencent_video']
 
     print("cpu")
-    getCsvChoose2(file_label,file2, 64, save_file_cpu, 16, feature_list, choose_cpu_gpu = "cpu", size_max=32)
+    getCsvChoose2(file_label,file, 64, save_file_cpu, 16, feature_list, choose_cpu_gpu = "cpu", size_max=32)
     print("gpu")
-    getCsvChoose2(file_label,file2, 64, save_file_gpu, 16, feature_list, choose_cpu_gpu = "gpu", size_max=32)
+    getCsvChoose2(file_label,file, 64, save_file_gpu, 16, feature_list, choose_cpu_gpu = "gpu", size_max=32)
   
-    # getCsv(file_label, file2, 64, save_file2, 16, feature_list)
+    getCsv(file_label, file, 64, save_file, 16, feature_list)
+    
     print('labels', labels)
     # sort labels by category
     color = ['b', 'c', 'g', 'k', 'r', 'y', 'b', 'c', 'g', 'k', 'r', 'y', 'b', 'c', 'g', 'k', 'r', 'w', 'y']
@@ -52,8 +53,8 @@ if __name__ == "__main__":
         label_text[i] = program_name[label_text[i]]
     # random forest train
    
-    print("=========== STR_MAC2 ===========")
-    modelTrain(save_file2, 5)
+    print("=========== STR_MAC ===========")
+    modelTrain(save_file, 5)
     
     print("=========== mac cpu ==============")
     modelTrain(save_file_cpu, 5)
