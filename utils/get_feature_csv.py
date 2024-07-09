@@ -21,7 +21,7 @@ def getCsv(file_label, f, length, save_path, size, feature_list, size_max=128):
 
     dataset = np.empty(shape=(0, 16 * feature_n * 2))
     label = []
-    for i in range(len(cpu_list1)):
+    for i in range(len(file_label)):
         
         cpu_temp_file_name = f'{cpu_label_before}-{file_label[i]}'
         gpu_temp_file_name = f'{gpu_label_before}-{file_label[i]}'
@@ -100,7 +100,7 @@ def getCsvNp(file_label, f, length, size, feature_list, size_max=128):
 
     dataset = np.empty(shape=(0, 16 * feature_n * 2))
     label = []
-    for i in range(len(cpu_list1)):
+    for i in range(len(file_label)):
         cpu_temp_file_name = f'{cpu_label_before}-{file_label[i]}'
         gpu_temp_file_name = f'{gpu_label_before}-{file_label[i]}'
         
@@ -476,3 +476,87 @@ def mergeCSV(file_list, save_file):
             data = pd.concat([data, pd.read_csv(file_list[j])], axis=0)
     data.to_csv(save_file, index=False)
     return
+
+
+def getCsv_p(file_label, f, length, save_path, size, feature_list, size_max=128):
+    feature_n = len(feature_list)
+    f_cpu = os.path.join(f, 'cpu')
+    f_gpu = os.path.join(f, 'gpu')
+    
+    cpu_list1 = os.listdir(f_cpu)
+    _ = cpu_list1[0].split('-')
+    cpu_label_before = _[0]
+    
+    gpu_list1 = os.listdir(f_gpu)
+    _ = gpu_list1[0].split('-')
+    gpu_label_before = _[0]
+
+    dataset = np.empty(shape=(0, 16 * feature_n * 2))
+    label = []
+    for i in range(len(file_label)):
+        cpu_temp_file_name = f'{cpu_label_before}-{file_label[i]}'
+        gpu_temp_file_name = f'{gpu_label_before}-{file_label[i]}'
+        # print(cpu_temp_file_name)
+        # print(gpu_temp_file_name)
+        # print(cpu_list1)
+        if cpu_temp_file_name not in cpu_list1 or gpu_temp_file_name not in gpu_list1:
+            print("label error")
+            exit()
+        
+        path = os.path.join(f_cpu, cpu_temp_file_name)
+        fs = os.listdir(path)
+        # fs.sort(key=lambda x: int(x[0:-4]))
+        # fs = fs[0: size_max]
+        feature_cpu = np.empty(shape=(0, 16 * feature_n))
+        for k in range(len(fs)):
+            if k >= size_max:
+                break
+            csv_f = os.path.join(path,  fs[k])
+            data = pd.read_csv(csv_f, header=None)
+            data = np.array(data)
+
+            for x in range(data.shape[0] // length):
+                feature = np.empty(shape=0)
+                for j in range(data.shape[1]):
+                    feature = np.concatenate((feature, getFeature(data[x * length:(x + 1) * length, j])))
+
+                feature = np.expand_dims(feature, 0)
+                feature_cpu = np.concatenate((feature_cpu, feature), axis=0)
+
+        feature_gpu = np.empty(shape=(0, 16 * feature_n))
+        path = os.path.join(f_gpu, gpu_temp_file_name)
+        fs = os.listdir(path)
+        # fs.sort(key=lambda x: int(x[0:-4]))
+        for k in range(len(fs)):
+            if k >= size_max:
+                break
+            csv_f = os.path.join(path, fs[k])
+            data = pd.read_csv(csv_f, header=None)
+            data = np.array(data)
+
+            for x in range(data.shape[0] // length):
+                feature = np.empty(shape=0)
+                for j in range(data.shape[1]):
+                    feature = np.concatenate((feature, getFeature(data[x * length:(x + 1) * length:, j])))
+                feature = np.expand_dims(feature, 0)
+                feature_gpu = np.concatenate((feature_gpu, feature), axis=0)
+
+        count = min(feature_cpu.shape[0], feature_gpu.shape[0])
+        feature_cpu_gpu = np.hstack((feature_cpu[:count, :], feature_gpu[:count, :]))
+        dataset = np.vstack([dataset, feature_cpu_gpu])
+        label += count * [[i]]
+        print(f"{file_label[i]}  count: {count} label: {i}")
+    label = np.array(label)
+    # print(label.shape)
+    # print(dataset.shape)
+    last_data = np.hstack((label, dataset))
+    s = []
+    for i in range(size):
+        for j in range(feature_n):
+            s.append(str(i) + feature_list[j])
+    s = s + s
+    head = ['label'] + s
+    df = pd.DataFrame(data=last_data)
+    df.columns = head
+    df.to_csv(save_path, index=False)
+    return file_label
