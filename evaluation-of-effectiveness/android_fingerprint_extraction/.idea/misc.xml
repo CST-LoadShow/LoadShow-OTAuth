@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Work/Projects/Research/fingerprint/android_fingerprinting_extraction/app/src/main/res/layout/activity_main.xml" value="0.7333333333333334" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/drawable/ic_launcher_background.xml" value="0.413" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/layout/dialog_layout.xml" value="0.5489583333333333" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.413" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.413" />
+        <entry key="..\:/Work/Projects/androidProject/openssl_test/app/src/main/res/layout/activity_main.xml" value="0.2265625" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
