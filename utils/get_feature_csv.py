@@ -366,15 +366,19 @@ def getCsvGet(file_label, f, length, save_path, size, feature_list, size_max=128
     feature_n = len(feature_list)
     f_cpu_gpu = f
     list1 = os.listdir(f_cpu_gpu)
-    _ = list1[0].index('-')
-    list2 = [s[_ + 1:] for s in list1]
+    _ = list1[0].split('-')
+    label_before = _[0]
+    
     dataset = np.empty(shape=(0, 16 * feature_n))
     label = []
-    for i in range(len(list1)):
-        if list2[i] not in file_label:
+    for i in range(len(file_label)):
+        temp_file_name = f'{label_before}-{file_label[i]}'
+        if temp_file_name not in list1:
             continue
-        path = os.path.join(f_cpu_gpu, list1[i])
+        path = os.path.join(f_cpu_gpu, temp_file_name)
         fs = os.listdir(path)
+        fs.sort()
+        # print(fs)
         feature_cpu_gpu = np.empty(shape=(0, 16 * feature_n))
         for k in range(len(fs)):
             if k >= size_max:
@@ -393,7 +397,7 @@ def getCsvGet(file_label, f, length, save_path, size, feature_list, size_max=128
         # print(f'name: {list2[i]}; counet: {feature_cpu_gpu.shape[0]}; label: {file_label.index(list2[i])}')
         count = feature_cpu_gpu.shape[0]
         dataset = np.vstack([dataset, feature_cpu_gpu])
-        label += count * [[file_label.index(list2[i])]]
+        label += count * [[i]]
     label = np.array(label)
     last_data = np.hstack((label, dataset))
     s = []
@@ -405,7 +409,7 @@ def getCsvGet(file_label, f, length, save_path, size, feature_list, size_max=128
     df = pd.DataFrame(data=last_data)
     df.columns = head
     df.to_csv(save_path, index=False)
-    return list2
+    return file_label
 
 
 def mergeCSV(file_list, save_file):
