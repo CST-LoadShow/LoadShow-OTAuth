@@ -15,7 +15,7 @@ if __name__ == "__main__":
     print("=========== get feature csv ===========")
     feature_list = ['mean', 'std', 'max', 'min', 'range', 'CV', 'RMS', 'MAD', 'skew', 'kurt',
                     'Q1', 'Median', 'Q3', 'IQR', 'SF', 'IF', 'CF']
-    file_label = os.listdir('../../dataset/div_firstpeak/9600k-2060/cpu')
+    file_label = os.listdir('../../dataset/9600k-2060/cpu')
     tmp = file_label[0].index("-")
     file_label = [s[tmp+1:] for s in file_label]
     file_label = ['tencent_meeting', 'formatfactory', 'wechat', 'baseline', 'matlab', 'tencent_video', 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
                     'bandicam', 'bandizip', 'unity', 'switch_audio_convert', 'potplayer', 'iZotopeRX8', 
                     'csgo', 'winrar']
     print(len(file_label))
-    file = "../../dataset/div_firstpeak/9600k-2060"
+    file = "../../dataset/9600k-2060"
     save_file = "9600_feature.csv"
 
     # labels = getCsv(file_label, file, 64, save_file, 16, feature_list)

@@ -35,9 +35,9 @@ def ablation_cpu_gpu(file, device):
 
 
 if __name__ == "__main__":
-    file_list = ['../../dataset/div_firstpeak/9600k-2060',
-                 '../../dataset/div_firstpeak/Mac',
-                 '../../dataset/div_firstpeak/Pixel']
+    file_list = ['../../dataset/9600k-2060',
+                 '../../dataset/Mac',
+                 '../../dataset/Pixel']
     ablation_cpu_gpu(file_list[0], 'SOR33')
     ablation_cpu_gpu(file_list[1], 'STR_MAC')
     ablation_cpu_gpu(file_list[2], 'STR_Pixel')

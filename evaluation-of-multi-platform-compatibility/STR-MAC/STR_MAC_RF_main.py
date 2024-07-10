@@ -13,7 +13,7 @@ if __name__ == "__main__":
     print("=========== get feature csv ===========")
     feature_list = ['mean', 'std', 'max', 'min', 'range', 'CV', 'RMS', 'MAD', 'skew', 'kurt',
                     'Q1', 'Median', 'Q3', 'IQR', 'SF', 'IF', 'CF']
-    file_label = os.listdir('../../dataset/div_firstpeak/Mac/cpu')
+    file_label = os.listdir('../../dataset/Mac/cpu')
     tmp = file_label[0].index("-")
     file_label = [s[tmp+1:] for s in file_label]
 
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     
     # labels =['wechat', 'zoom', 'bandizip', 'qq_music', 'AliyunNetdisk', 'obs', 'BaiduNetdisk', 'bilibili', 'vlc', 'baseline', 'iQiYi', 'tencent_meeting', 'cloudmusic', 'pr2023', 'tencent_video']
   
-    file = "../../dataset/div_firstpeak/Mac"
+    file = "../../dataset/Mac"
     save_file = "STR_MAC.csv"
     labels = ['wechat', 'zoom', 'bandizip', 'qq_music', 'AliyunNetdisk', 'obs', 'BaiduNetdisk', 'bilibili', 'vlc', 'baseline', 'iQiYi', 'tencent_meeting', 'cloudmusic', 'pr2023', 'tencent_video']
 

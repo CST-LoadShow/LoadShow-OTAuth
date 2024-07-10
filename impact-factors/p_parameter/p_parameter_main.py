@@ -12,10 +12,10 @@ if __name__ == "__main__":
     print("=========== get feature csv ===========")
     feature_list = ['mean', 'std', 'max', 'min', 'range', 'CV', 'RMS', 'MAD', 'skew', 'kurt',
                     'Q1', 'Median', 'Q3', 'IQR', 'SF', 'IF', 'CF']
-    file_list = ["../../dataset/div_firstpeak/9600k-2060-200-fff",
-                 "../../dataset/div_firstpeak/9600k-2060-2000-ffff",
-                 "../../dataset/div_firstpeak/9600k-2060-5000-3ffff",
-                 "../../dataset/div_firstpeak/9600k-2060"]
+    file_list = ["../../dataset/9600k-2060-200-fff",
+                 "../../dataset/9600k-2060-2000-ffff",
+                 "../../dataset/9600k-2060-5000-3ffff",
+                 "../../dataset/9600k-2060"]
     name_list = ["9600k-2060-200-fff", "9600k-2060-2000-ffff", "9600k-2060-5000-3ffff", "9600k-2060-20000-fffff"]
 
     file_label = ['7zip', 'formatfactory', 'matlab', 'mpcbe', 'obs', 'qq_music', 'tencent_meeting', 'utorrent']

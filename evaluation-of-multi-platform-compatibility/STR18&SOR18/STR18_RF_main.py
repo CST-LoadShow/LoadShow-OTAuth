@@ -20,9 +20,9 @@ if __name__ == "__main__":
     feature_list = ['mean', 'std', 'max', 'min', 'range', 'CV', 'RMS', 'MAD', 'skew', 'kurt',
                     'Q1', 'Median', 'Q3', 'IQR', 'SF', 'IF', 'CF']
 
-    file1 = "../../dataset/div_firstpeak/9600k-2060"
-    file2 = "../../dataset/div_firstpeak/e5-k2000"
-    file3 = "../../dataset/div_firstpeak/10700-550X"
+    file1 = "../../dataset/9600k-2060"
+    file2 = "../../dataset/e5-k2000"
+    file3 = "../../dataset/10700-550X"
     save_file = ["STR18.csv", "STR18_1.csv", "STR18_2.csv", "STR18_3.csv", "SOR18.csv"]
     file_label = ['altium_designer', 'pr2023', 'vlc', 'bilibili', 'iQiYi', 'tencent_video', 'cloudmusic', 'qq_music',
                   'zoom', 'tencent_meeting', 'wechat', 'AliyunNetdisk', 'BaiduNetdisk', 'winrar',

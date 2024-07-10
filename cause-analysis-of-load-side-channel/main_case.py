@@ -33,12 +33,12 @@ def testOneCase(file):
 if __name__ == "__main__":
 
     file_list = [
-        "../dataset/div_firstpeak/cause/case1",
-        "../dataset/div_firstpeak/cause/case2",
-        "../dataset/div_firstpeak/cause/case3",
-        "../dataset/div_firstpeak/cause/case4",
-        "../dataset/div_firstpeak/cause/case5",
-        "../dataset/div_firstpeak/cause/case6",
+        "../dataset/cause/case1",
+        "../dataset/cause/case2",
+        "../dataset/cause/case3",
+        "../dataset/cause/case4",
+        "../dataset/cause/case5",
+        "../dataset/cause/case6",
     ]
     acc_list = []
     for file in file_list:
