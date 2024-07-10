@@ -56,11 +56,6 @@ if __name__ == "__main__":
     print("=========== STR_MAC ===========")
     modelTrain(save_file, 5)
     
-    print("=========== mac cpu ==============")
-    modelTrain(save_file_cpu, 5)
-
-    print("=========== mac gpu ==============")
-    modelTrain(save_file_gpu, 5)
 
 
     

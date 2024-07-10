@@ -62,10 +62,4 @@ if __name__ == "__main__":
     modelTrain(save_file, model_save, 'matrix.png', label_text)
     
     
-    print("=========== cpu dataset ===========")
-    modelTrain(save_file_cpu, model_save, 'matrix_cpu.png', label_text)
-    
-       
-    print("=========== gpu dataset ===========")
-    modelTrain(save_file_gpu, model_save, 'matrix_gpu.png', label_text)
     
