@@ -19,9 +19,9 @@ The following functions are the most important pieces of code for fingerprinting
 
 #### CPU fingerprinting code:
 
-The code are located in the `android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp` file.
+The code is located in the `android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp` file.
 
-- In the following code, the `RAND_bytes` function from OpenSSL is used as a delay function, and the `clock_gettime` function is utilized for timing, achieving nanosecond-level timing precision.
+- In the following code, the `RAND_bytes` function from OpenSSL is used as the fingerprinting function, and the `clock_gettime` function is utilized for timing, achieving nanosecond-level timing precision.
 
 ```c
 uint64_t stall_function_openssl(long arg, int p)
@@ -45,7 +45,7 @@ uint64_t stall_function_openssl(long arg, int p)
 
 #### GPU fingerprinting code:
 
-The code are located in the `android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp` file.
+The code is located in the `android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp` file.
 
 - `stall_function` is set in the VERTEX_SHADER as a delay function.
 
