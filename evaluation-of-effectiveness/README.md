@@ -53,4 +53,5 @@ uint64_t measureVertex(GLuint program, GLint vertexIndex) {
     uint64_t stallTime = as_nanoseconds(&end) - as_nanoseconds(&start);
     glDeleteSync(syncObject);
     return stallTime;
+}
 ```
