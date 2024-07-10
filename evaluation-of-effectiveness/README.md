@@ -9,7 +9,7 @@ You could download the .apk file in our release version or follow these three st
 ## Project Content
 The key codes are located in the `android_fingerprint_extraction/app/src/main` directory. 
 |Directory|Description|
-|:---:|:---:|
+|:---:|:---|
 |cpp|Native C code, responsible for the specific implementation of fingerprint extraction|
 |java|Extract management and set configuration|
 |res|Interface and graphic resource files|
@@ -105,3 +105,9 @@ uint64_t measureVertex(GLuint program, GLint vertexIndex) {
     return stallTime;
 }
 ```
+
+## Settings of `p`
+
+| Settings | `CPU_P` | `GPU_P` |
+| :------  | :-----------: | :-----------: |
+| Android | `500` | `0xffff` |
