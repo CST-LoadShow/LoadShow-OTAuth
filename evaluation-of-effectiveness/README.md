@@ -16,9 +16,11 @@ The key codes are located in the `android_fingerprint_extraction/app/src/main` d
 
 ## Parameter `p` in Fingerprinting
 The following two loops are the most important pieces of code for fingerprinting, and the parameter `p` is the key to controlling the time and effect of fingerprinting.
+
 CPU fingerprinting code:
+
 (android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp)
-```
+```c
 uint64_t stall_function_openssl(long arg, int p){
     struct timespec start, end;
     time_t time1 = (long)10;
@@ -35,9 +37,11 @@ uint64_t stall_function_openssl(long arg, int p){
     return t;
 }
 ```
+
 GPU fingerprinting code:
+
 (android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp)
-```
+```c
 uint64_t measureVertex(GLuint program, GLint vertexIndex) {
     struct timespec start, end;
     GLsync syncObject = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
