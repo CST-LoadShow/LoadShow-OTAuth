@@ -2,6 +2,11 @@ package com.example.fingerprint;
 
 public class NativeLib {
 
+    public static String CPU_IP = "";
+    public static String CPU_PORT = "";
+    public static String GPU_IP = "";
+    public static String GPU_PORT = "";
+
     /** 等待时间 */
     public static int waitTime = 20000;
     /** CPU测试数量 */
