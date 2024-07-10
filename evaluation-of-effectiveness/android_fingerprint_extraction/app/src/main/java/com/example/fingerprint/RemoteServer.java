@@ -15,11 +15,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * CPU: 81.70.33.32:8 082
- * GPU: 81.70.33.32:8080
- * */
-
 public class RemoteServer {
     public void postString(String str, String ip, String port, String append, String cur_time){
 
