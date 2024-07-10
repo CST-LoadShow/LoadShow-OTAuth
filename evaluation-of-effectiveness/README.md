@@ -85,7 +85,7 @@ extern "C" JNIEXPORT jstring JNICALL draw
 }
 ```
 
-- Build a synchronization object and record the execution time of the synchronization function `glClientWaitSync` as part of the GPU fingerprint application every time a drawing instruction is issued to the GPU.
+- Build a synchronization object and record the execution time of the synchronization function `glClientWaitSync` as part of the GPU fingerprint every time a drawing instruction is issued to the GPU.
 
 ```c
 uint64_t measureVertex(GLuint program, GLint vertexIndex) {
