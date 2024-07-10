@@ -1,7 +1,7 @@
 # LoadShow for Android
 
 ## Usage
-You could download the .apk file in our release version or follow these three steps to compile with codes yourself.
+You could download the .apk file in our release version or follow these three steps to compile the codes yourself.
 1. Install CMake and NDK in Android Studio
 2. Compile the code in Android Studio
 3. Run the application on your mobile phone or Android Simulator
