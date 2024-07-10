@@ -2,12 +2,12 @@
 
 ## Usage
 You could download the .apk file in our release version or follow these three steps to compile the codes yourself.
-1. Install CMake and NDK in Android Studio
-2. Compile the code in Android Studio
-3. Run the application on your mobile phone or Android Simulator
+1. Install `CMake` and `NDK` in Android Studio. 
+2. Compile the code in Android Studio. 
+3. Run the application on your mobile phone or Android Simulator. 
 
 ## Project Content
-The key codes are located in the `android_fingerprint_extraction/app/src/main` directory
+The key codes are located in the `android_fingerprint_extraction/app/src/main` directory. 
 |Directory|Description|
 |:---:|:---:|
 |cpp|Native C code, responsible for the specific implementation of fingerprint extraction|
@@ -15,20 +15,25 @@ The key codes are located in the `android_fingerprint_extraction/app/src/main` d
 |res|Interface and graphic resource files|
 
 ## Parameter `p` in Fingerprinting
-The following two loops are the most important pieces of code for fingerprinting, and the parameter `p` is the key to controlling the time and effect of fingerprinting.
+The following functions are the most important pieces of code for fingerprinting, and the parameter `p` is the key to controlling the time and effect of fingerprinting.
 
-CPU fingerprinting code:
+#### CPU fingerprinting code:
 
-(android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp)
+The code are located in the `android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp` file.
+
+-In the following code, the `RAND_bytes` function from OpenSSL is used as a delay function, and the `clock_gettime` function is utilized for timing, achieving nanosecond-level timing precision.
+
 ```c
-uint64_t stall_function_openssl(long arg, int p){
+uint64_t stall_function_openssl(long arg, int p)
+{
     struct timespec start, end;
     time_t time1 = (long)10;
     srand(time(&time1));
     int len = arg * sizeof(unsigned char);
     unsigned char* array = (unsigned char*)malloc(len);
     clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start);
-    for(int i = 0;i<p;i++) {
+    for(int i = 0; i < CPU_P; i++)
+    {
         RAND_bytes((unsigned char *)array, arg);
     }
     clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end);
@@ -38,9 +43,22 @@ uint64_t stall_function_openssl(long arg, int p){
 }
 ```
 
-GPU fingerprinting code:
+#### GPU fingerprinting code:
 
-(android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp)
+The code are located in the `android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp` file.
+
+```
+float stall_function()
+{
+    float res = 0.01;
+    for(int i = 1; i < GPU_P; i++)
+    {
+        res = sinh(res);
+    }
+    return res;
+}
+```
+
 ```c
 uint64_t measureVertex(GLuint program, GLint vertexIndex) {
     struct timespec start, end;
