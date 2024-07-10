@@ -21,7 +21,7 @@ The following functions are the most important pieces of code for fingerprinting
 
 The code are located in the `android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp` file.
 
--In the following code, the `RAND_bytes` function from OpenSSL is used as a delay function, and the `clock_gettime` function is utilized for timing, achieving nanosecond-level timing precision.
+- In the following code, the `RAND_bytes` function from OpenSSL is used as a delay function, and the `clock_gettime` function is utilized for timing, achieving nanosecond-level timing precision.
 
 ```c
 uint64_t stall_function_openssl(long arg, int p)
@@ -47,7 +47,9 @@ uint64_t stall_function_openssl(long arg, int p)
 
 The code are located in the `android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp` file.
 
-```
+- `stall_function` is set in the VERTEX_SHADER as a delay function.
+
+```javascript
 float stall_function()
 {
     float res = 0.01;
@@ -58,6 +60,32 @@ float stall_function()
     return res;
 }
 ```
+
+- When extracting application fingerprints, the `draw` function loads the aforementioned VERTEX_SHADER and selects different vertices to execute the shader.
+
+```c
+extern "C" JNIEXPORT jstring JNICALL draw
+        (JNIEnv*env, jclass clazz)
+{
+    string result;
+    GLuint program = prepare();
+    glUseProgram(program);
+    glVertexAttribPointer(0,2,GL_FLOAT,GL_FALSE,0,tableVerticesWithTriangles);
+    glEnableVertexAttribArray(0);
+    //draw something
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    for(int i=0 ; i<(1 << k); i++){
+        result += to_string(measureVertex(program, i));
+        result += (i < (1 << k) - 1) ? (",") : ("\n");
+    }
+    int res_len = result.length();
+    char* res_char = new char[res_len + 1];
+    strcpy(res_char, result.c_str());
+    return env->NewStringUTF(res_char);
+}
+```
+
+- Build a synchronization object and record the execution time of the synchronization function `glClientWaitSync` as part of the GPU fingerprint application every time a drawing instruction is issued to the GPU.
 
 ```c
 uint64_t measureVertex(GLuint program, GLint vertexIndex) {
