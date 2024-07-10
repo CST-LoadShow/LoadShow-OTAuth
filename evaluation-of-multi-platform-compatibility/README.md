@@ -1,4 +1,6 @@
-# Parameter `p` in Fingerprinting
+# LoadShow for PC Devices
+
+## Parameter `p` in Fingerprinting
 
 The following two loops are the most important pieces of code for fingerprinting, and the parameter `p` is the key to controlling the time and effect of fingerprinting.
 
