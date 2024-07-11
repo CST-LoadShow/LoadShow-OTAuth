@@ -1,7 +1,15 @@
 # LoadShow for Android
 
 ## Usage
-You could download the .apk file in our release version or follow these three steps to compile the codes yourself.
+
+### Obtain APK from release
+You could download the. apk file from our release version and manually enter the configured remote server IP address and port number to receive the application fingerprint data extracted by LoadShow.
+<center class ='img'>
+<img title="LoadShow Configuration Layout" src="img/Loadshow_layout_1.png" width="45%">
+</center>
+
+### Obtain APK through compilation
+Alternatively, you can compile the code yourself by the following three steps.
 1. Install `CMake` and `NDK` in Android Studio. 
 2. Compile the code in Android Studio. 
 3. Run the application on your mobile phone or Android Simulator. 
@@ -17,7 +25,7 @@ The key codes are located in the `android_fingerprint_extraction/app/src/main` d
 ## Parameter `p` in Fingerprinting
 The following functions are the most important pieces of code for fingerprinting, and the parameter `p` is the key to controlling the time and effect of fingerprinting.
 
-#### CPU fingerprinting code:
+### CPU fingerprinting code:
 
 The code is located in the `android_fingerprint_extraction/app/src/main/cpp/native-lib.cpp` file.
 
@@ -43,7 +51,7 @@ uint64_t stall_function_openssl(long arg, int p)
 }
 ```
 
-#### GPU fingerprinting code:
+### GPU fingerprinting code:
 
 The code is located in the `android_fingerprint_extraction/app/src/main/cpp/cpp_offscreen_gpu.cpp` file.
 
@@ -106,7 +114,7 @@ uint64_t measureVertex(GLuint program, GLint vertexIndex) {
 }
 ```
 
-#### Settings of `p`
+### Settings of `p`:
 
 | Settings | `CPU_P` | `GPU_P` |
 | :------  | :-----------: | :-----------: |
