@@ -4,9 +4,9 @@
 
 ### Obtain APK from release
 You could download the. apk file from our release version and manually enter the configured remote server IP address and port number to receive the application fingerprint data extracted by LoadShow.
-<center class ='img'>
-<img title="LoadShow Configuration Layout" src="img/Loadshow_layout_1.png" width="45%">
-</center>
+<div align=center>
+<img title="LoadShow Configuration Layout" src="img/LoadShow_layout_1.png" width="30%">
+</div>
 
 ### Obtain APK through compilation
 Alternatively, you can compile the code yourself by the following three steps.
