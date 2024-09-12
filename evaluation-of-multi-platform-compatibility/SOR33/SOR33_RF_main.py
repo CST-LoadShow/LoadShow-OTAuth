@@ -19,7 +19,7 @@ if __name__ == "__main__":
     tmp = file_label[0].index("-")
     file_label = [s[tmp+1:] for s in file_label]
     file_label = ['tencent_meeting', 'formatfactory', 'wechat', 'baseline', 'matlab', 'tencent_video', 
-                  'utorrent', 'qq_music', 'BaiduNetdisk', 'obs', 'spotify', 'ore', 'hogwarts', 
+                  'utorrent', 'qq_music', 'BaiduNetdisk', 'obs', 'spotify', 'hogwarts', 
                   'cloudmusic', 'bilibili', 'mpcbe', 'lol', 'altium_designer', 'AliyunNetdisk',
                     'pr2023', 'sunlogin', 'iQiYi', '7zip', 'zoom', 'huorong', 'audition', 'vlc', 
                     'bandicam', 'bandizip', 'unity', 'switch_audio_convert', 'potplayer', 'iZotopeRX8', 
