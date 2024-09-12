@@ -46,7 +46,7 @@ public class CPUThread extends Thread{
             long endWait = System.currentTimeMillis();
             // 点击按钮后20s向服务器发送数据
             if(endWait - startWait > waitTime) {
-                remoteServer.postString(cpuTimeResult, "81.70.33.32","8084", "/get_fingerprint", null);
+                remoteServer.postString(cpuTimeResult, NativeLib.CPU_IP,NativeLib.CPU_PORT, "/get_fingerprint", null);
                 // System.out.println(cpuTimeResult);
                 count += 1;
                 if (count >= maxCount) {

@@ -56,7 +56,7 @@ public class GPUThread extends Thread{
 //            long wait3 = System.currentTimeMillis();
             long endWait = System.currentTimeMillis();
             if(endWait - startWait > waitTime) {
-                remoteServer.postString(gpuTimeResult, "81.70.33.32","8184", "/get_offscreen_traces", cur_time);
+                remoteServer.postString(gpuTimeResult, NativeLib.GPU_IP,NativeLib.GPU_PORT, "/get_offscreen_traces", cur_time);
 //                System.out.println("count:" + count + "\t" + gpuTimeResult);
 //                System.out.println("init time:\t" + (wait1 - wait0));
 //                System.out.println("draw time:\t" + (wait2 - wait1));

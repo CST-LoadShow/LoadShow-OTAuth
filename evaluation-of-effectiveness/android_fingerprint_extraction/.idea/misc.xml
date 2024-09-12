@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Work/Projects/Research/fingerprint/android_fingerprinting_extraction/app/src/main/res/layout/activity_main.xml" value="0.7333333333333334" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/android_fingerprinting_extraction/app/src/main/res/drawable/setting_button_selector.xml" value="0.19" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/android_fingerprinting_extraction/app/src/main/res/drawable/setting_dialog.xml" value="0.19" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/android_fingerprinting_extraction/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Work/Projects/Research/fingerprint/android_fingerprinting_extraction/app/src/main/res/layout/layout_custom_dialog.xml" value="0.18541666666666667" />
         <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/drawable/ic_launcher_background.xml" value="0.413" />
         <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Work/Projects/Research/fingerprint/openssl_test/app/src/main/res/layout/dialog_layout.xml" value="0.5489583333333333" />
