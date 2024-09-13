@@ -6,7 +6,7 @@ We consider a scenario where one primary application and some secondary applicat
 Our goal is to feed the classifier a set of timing data extracted when $n$ applications are running simultaneously, and the classifier can correctly output the label of the primary application.
 This is a measure of the noise tolerance of the classifier, i.e., the ability to recognize the primary application in the presence of noise caused by other foreground applications.
 
-We choose music players and download tools as secondary applications and other applications that do not conflict with their simultaneous use as primary applications. 
+We choose music players and download tools as secondary applications and other 8 applications that do not conflict with their simultaneous use as primary applications. 
 There are 36 combination cases for $n=2$ (one primary application along with one music player or one download tool), 48 combination cases for $n=3$, and 40 combination cases for $n=4$ 
 (one primary application along with one music player and one/two download tools, or with two/three download tools).
 We extract timing data for each combination case and name these datasets **TOR36** $(n=2)$, **TOR48** $(n=3)$, and **TOR40** $(n=4)$, respectively. 
