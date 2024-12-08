@@ -1,4 +1,6 @@
-from multi_application_recognition.multi_app_recognition_n3.random_forest import modelTrain, modelTest
+import sys
+sys.path.append("../../")
+from random_forest import modelTrain, modelTest
 from utils.get_feature_csv import get_csv_multi, getCsv
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 import pickle
+import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from mlxtend.plotting import plot_confusion_matrix
@@ -42,6 +43,20 @@ def modelTest(dataset_path, save_model, label_text, save_pic):
 
     cm = confusion_matrix(y, y_pred)
 
+    print("accuracy", forest100.score(X, y))
+    
+    FP = cm.sum(axis=0) - np.diag(cm)  
+    FN = cm.sum(axis=1) - np.diag(cm)
+    TP = np.diag(cm)
+    TN = cm.sum() - (FP + FN + TP)
+
+    TPR = TP / (TP + FN)
+    FPR = FP / (FP + TN)
+    print("TPR", TPR)
+    print("FPR", FPR)
+    print("avg TPR", np.mean(TPR))
+    print("avg FPR", np.mean(FPR))
+    
     plt.rcParams["font.family"] = "Times New Roman"
     fig, ax = plot_confusion_matrix(conf_mat=cm,
                                     show_absolute=True,

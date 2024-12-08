@@ -1,4 +1,6 @@
-from multi_application_recognition.multi_app_recognition_n2.random_forest import modelTrain, modelTest
+import sys
+sys.path.append("../../")
+from random_forest import modelTrain, modelTest
 from utils.get_feature_csv import getCsv, get_csv_multi
 
 if __name__ == "__main__":
@@ -15,8 +17,8 @@ if __name__ == "__main__":
     save_file_train = "feature_train.csv"
     save_file_test = "TOR48_feature_test.csv"
 
-    labels = getCsv(file_label, file, 64, save_file_train, 16, feature_list)
-    get_csv_multi(file_label, file_test, 64, save_file_test, 16, feature_list, size_max=32)
+    # labels = getCsv(file_label, file, 64, save_file_train, 16, feature_list)
+    # get_csv_multi(file_label, file_test, 64, save_file_test, 16, feature_list, size_max=32)
     label_text = file_label
 
     print("=========== train random forest ===========")
